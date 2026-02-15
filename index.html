@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASHEN_x App</title>
+
+  <style>
+    /* Splash screen */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: #00ff00;
+      font-family: Arial, sans-serif;
+    }
+
+    #splash img {
+      width: 200px;
+      margin-bottom: 20px;
+      animation: fadeOut 2s forwards;
+    }
+
+    #splash h1 {
+      font-size: 48px;
+      font-weight: bold;
+      animation: dropFade 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes dropFade {
+      0% { opacity: 0; transform: translateY(-50px); }
+      50% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(50px); }
+    }
+
+    /* Main Screen */
+    #main {
+      display: none;
+      height: 100vh;
+      background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu_EY8W5zITBnAzlrpP_ZL39npSlwtvieLUooDNvaiPg&s.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Text Box */
+    .content {
+      position: relative;
+      top: 35%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      padding: 25px;
+      border-radius: 15px;
+      display: inline-block;
+    }
+
+    .content h1 {
+      font-size: 45px;
+      color: #00ff00;
+    }
+
+    .content p {
+      font-size: 18px;
+    }
+
+    /* Enter Button */
+    .enter-btn {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 15px 50px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      background: #00ff00;
+      color: black;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00ff00;
+      transition: 0.3s;
+    }
+
+    .enter-btn:hover {
+      background: black;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="logo.png" alt="Logo">
+    <h1>ASHEN_x</h1>
+  </div>
+
+  <!-- Main Screen -->
+  <div id="main">
+    <div class="content">
+      <h1>Welcome to the ASHEN_x!</h1>
+      <p>This is Develop by ASHEN.</p>
+    </div>
+
+    <!-- ENTER Button -->
+    <button class="enter-btn" onclick="openToolPage()">
+      💀 Enter
+    </button>
+  </div>
+
+  <script>
+    /* Splash → Main */
+    setTimeout(function () {
+      document.getElementById("splash").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    }, 3000);
+
+    /* Enter Button → Open Tool Page */
+    function openToolPage() {
+      let newWindow = window.open("", "_blank");
+
+      newWindow.document.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>ASHEN_x Tool Panel</title>
+
+          <style>
+            body {
+              margin: 0;
+              font-family: Arial, sans-serif;
+              background: black;
+              color: white;
+              text-align: center;
+            }
+
+            header {
+              background: #00ff00;
+              color: black;
+              padding: 20px;
+              font-size: 30px;
+              font-weight: bold;
+              box-shadow: 0 0 20px #00ff00;
+            }
+
+            h2 {
+              margin-top: 50px;
+              color: #00ff00;
+            }
+
+            .btn-row {
+              margin-top: 40px;
+              display: flex;
+              justify-content: center;
+              gap: 20px;
+              flex-wrap: wrap;
+            }
+
+            button {
+              padding: 14px 28px;
+              font-size: 18px;
+              font-weight: bold;
+              border: none;
+              border-radius: 12px;
+              cursor: pointer;
+              min-width: 220px;
+              transition: 0.3s;
+            }
+
+            @keyframes glow {
+              0% { transform: scale(1); opacity: 0.8; }
+              50% { transform: scale(1.08); opacity: 1; }
+              100% { transform: scale(1); opacity: 0.8; }
+            }
+
+            .owner-btn {
+              background: red;
+              color: white;
+              box-shadow: 0 0 20px red;
+              animation: glow 1s infinite;
+            }
+
+            .whatsapp-btn {
+              background: #25D366;
+              color: black;
+              box-shadow: 0 0 20px #25D366;
+              animation: glow 1s infinite;
+            }
+
+            .fake-btn {
+              background: purple;
+              color: white;
+              box-shadow: 0 0 20px purple;
+              animation: glow 1s infinite;
+            }
+
+            .bot-btn {
+              background: orange;
+              color: black;
+              box-shadow: 0 0 20px orange;
+              animation: glow 1s infinite;
+            }
+
+            button:hover {
+              transform: scale(1.12);
+            }
+
+            /* Fake React UI */
+            #fakeReactUI {
+              display: none;
+              margin-top: 30px;
+            }
+
+            .react-card {
+              width: 90%;
+              max-width: 420px;
+              margin: auto;
+              background: #151e2e;
+              border-radius: 25px;
+              padding: 25px;
+              box-shadow: 0 0 25px rgba(0,0,0,0.6);
+            }
+
+            .react-card h1 {
+              color: orange;
+              font-size: 28px;
+            }
+
+            .react-card input {
+              width: 100%;
+              margin-top: 15px;
+              padding: 18px;
+              border-radius: 15px;
+              border: 2px solid rgba(255,255,255,0.2);
+              background: #0f1726;
+              font-size: 18px;
+              color: white;
+              outline: none;
+            }
+
+            .react-card button {
+              width: 100%;
+              margin-top: 20px;
+              padding: 18px;
+              border-radius: 18px;
+              font-size: 20px;
+              font-weight: bold;
+              background: gray;
+            }
+
+            .back-btn {
+              padding: 12px 25px;
+              font-size: 18px;
+              border-radius: 12px;
+              background: red;
+              color: white;
+              cursor: pointer;
+            }
+          </style>
+        </head>
+
+        <body>
+
+          <header>ASHEN_x Tool Panel</header>
+          <h2>Welcome Hacker 😈</h2>
+
+          <!-- TOOL PANEL -->
+          <div class="btn-row" id="toolPanel">
+
+            <button class="owner-btn"
+              onclick="window.location.href='tel:+94772587670'">
+              🚀 Owner Number
+            </button>
+
+            <button class="whatsapp-btn"
+              onclick="window.location.href='https://chat.whatsapp.com/FaW1E9LoRlE18TDl1R7PU1?mode=gi_t'">
+              🚀 Whatsapp Group
+            </button>
+
+            <button class="fake-btn"
+              onclick="openFakeReactUI()">
+              🚀 WA Fake React
+            </button>
+
+            <button class="bot-btn"
+              onclick="alert('Wa BOT Deploy Clicked!')">
+              🚀 Wa BOT Deploy
+            </button>
+
+          </div>
+
+          <!-- Fake React UI -->
+          <div id="fakeReactUI">
+
+            <button class="back-btn" onclick="goBackTools()">
+              ⬅ Back
+            </button>
+
+            <br><br>
+
+            <div class="react-card">
+
+              <h1>✈️ Instant Post React</h1>
+              <p>Cost: <b style="color:orange;">1 COIN</b> per submission.</p>
+
+              <input type="text" placeholder="WhatsApp Post Link">
+              <input type="text" placeholder="✨ Emoji Reacts">
+
+              <button>✔ Pay 1 COIN & Send</button>
+
+              <p style="margin-top:15px;font-size:13px;color:#888;">
+                Protected by reCAPTCHA and Google Privacy Policy.
+              </p>
+
+            </div>
+          </div>
+
+          <script>
+            function openFakeReactUI() {
+              document.getElementById("toolPanel").style.display = "none";
+              document.getElementById("fakeReactUI").style.display = "block";
+            }
+
+            function goBackTools() {
+              document.getElementById("fakeReactUI").style.display = "none";
+              document.getElementById("toolPanel").style.display = "flex";
+            }
+          <\/script>
+
+        </body>
+        </html>
+      `);
+    }
+  </script>
+
+</body>
+</html>
